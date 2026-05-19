@@ -17,12 +17,13 @@ const app = express();
 // Middleware
 app.use(cors({
   origin: function (origin, callback) {
-    // Allow all localhost ports + Vercel deployments
+    // Allow all localhost ports + Render + Vercel deployments
     if (!origin) return callback(null, true);
     if (
       origin.startsWith("http://localhost:") ||
       origin.startsWith("http://127.0.0.1:") ||
       origin.endsWith(".vercel.app") ||
+      origin.endsWith(".onrender.com") ||
       origin === process.env.FRONTEND_URL
     ) {
       return callback(null, true);
